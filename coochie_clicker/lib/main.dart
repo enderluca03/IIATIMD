@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
+  bool _isCounterActive = false;
 
   void _incrementCounter() {
     setState(() {
@@ -42,6 +44,39 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (_selectedIndex == 1) {
+      _startIncrementTimer();
+    } else {
+      _stopIncrementTimer();
+    }
+  }
+
+  void _startIncrementTimer() {
+    if (_selectedIndex == 1 && !_isCounterActive) {
+      _isCounterActive = true;
+      _incrementCounter();
+      Timer.periodic(const Duration(seconds: 1), (_) {
+        _incrementCounter();
+      });
+    }
+  }
+
+  void _stopIncrementTimer() {
+    _isCounterActive = false;
+  }
+
+  void _toggleCounter() {
+    setState(() {
+      _isCounterActive = !_isCounterActive;
+
+      if (_isCounterActive) {
+        _incrementCounter();
+        Timer.periodic(const Duration(seconds: 1), (_) {
+          _incrementCounter();
+        });
+      }
+    });
   }
 
   @override
@@ -50,9 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _selectedIndex == 0
-          ? _buildHomePage()
-          : _buildShopPage(), // Display different pages based on the selected index
+      body: _selectedIndex == 0 ? _buildHomePage() : _buildShopPage(),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -95,9 +128,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildShopPage() {
     return Center(
-      child: Icon(
-        Icons.shop,
-        size: 150,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text('Shop Page'),
+          ElevatedButton(
+            onPressed: _toggleCounter,
+            child: Text(_isCounterActive ? 'Deactivate Counter' : 'Activate Counter'),
+          ),
+        ],
       ),
     );
   }
