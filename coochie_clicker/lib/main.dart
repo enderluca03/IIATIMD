@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'shop.dart';
 
 void main() {
   runApp(const MyApp());
@@ -127,15 +128,63 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildShopPage() {
+    List<Shop> shopItems = [
+      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
+      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
+      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
+      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
+    ];
+    Widget shopTemplete(shop){
+      return Card(
+        margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              shop.amount,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[600]
+              )
+            ),
+            const SizedBox(height: 6.0),
+            Text(
+                shop.power,
+                style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.grey[600]
+                )
+            ),
+          ],
+        ),
+      );
+    }
+
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text('Shop Page'),
-          ElevatedButton(
-            onPressed: _toggleCounter,
-            child: Text(_isCounterActive ? 'Deactivate Counter' : 'Activate Counter'),
+          Column(
+            children:
+              shopItems.map((shopItem) =>
+                  Card(
+                    margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                    child: Column(
+                      children: <Widget>[
+                        Text('${shopItem.amount} ${shopItem.power} - ${shopItem.effect}'),
+                        OutlinedButton(onPressed: (){}, child: Text('${shopItem.price} Coochies')),
+
+                      ],
+                    )
+
+                    ,)
+              ).toList()
           ),
+          // ElevatedButton(
+          //   onPressed: _toggleCounter,
+          //   child: Text(_isCounterActive ? 'Deactivate Counter' : 'Activate Counter'),
+          // ),
         ],
       ),
     );
