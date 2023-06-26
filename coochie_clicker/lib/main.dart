@@ -129,10 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildShopPage() {
     List<Shop> shopItems = [
-      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
-      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
-      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
-      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 69),
+      Shop(power: 'Fingers', amount: 2, effect: 'More coochies per tap', price: 69),
+      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 420),
+      Shop(power: 'Alcohol', amount: 17, effect: 'Multiplies the changes of getting laid', price: 720),
     ];
     Widget shopTemplete(shop){
       return Card(
@@ -170,15 +169,30 @@ class _MyHomePageState extends State<MyHomePage> {
               shopItems.map((shopItem) =>
                   Card(
                     margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                    child: Column(
-                      children: <Widget>[
-                        Text('${shopItem.amount} ${shopItem.power} - ${shopItem.effect}'),
-                        OutlinedButton(onPressed: (){}, child: Text('${shopItem.price} Coochies')),
+                    color: Colors.redAccent,
+                    child: SizedBox(
+                      width: 375,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                          child: Column(
+                            children: <Widget>[
+                              Text('${shopItem.amount}X ${shopItem.power} -> ${shopItem.effect}'),
+                              OutlinedButton( style: OutlinedButton.styleFrom(
+                                side: const BorderSide(color: Colors.black, width: 1),
+                                backgroundColor: Colors.white,
+                                shape: BeveledRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                                  onPressed: (){}, child: Text('${shopItem.price} Coochies', style: const TextStyle(color: Colors.black),)),
+                            ],
+                          ),
 
-                      ],
+                        )
+                    ),
+
+
                     )
-
-                    ,)
               ).toList()
           ),
           // ElevatedButton(
