@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Coochie Clicker',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -32,14 +33,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
-  bool _isCounterActive = false;
+  Set<int> _activeButtons = {};
+  Timer? _timer;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+    _startIncrementTimer();
   }
 
+  void _startIncrementTimer() {
+    _stopIncrementTimer();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      int totalCount = 0;
+      for (int buttonIndex in _activeButtons) {
+        totalCount += _getIncrementValue(buttonIndex);
+      }
+      setState(() {
+        _counter += totalCount;
+      });
+    });
+  }
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -52,31 +67,31 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _startIncrementTimer() {
-    if (_selectedIndex == 1 && !_isCounterActive) {
-      _isCounterActive = true;
-      _incrementCounter();
-      Timer.periodic(const Duration(seconds: 1), (_) {
-        _incrementCounter();
-      });
-    }
-  }
-
   void _stopIncrementTimer() {
-    _isCounterActive = false;
+    _timer?.cancel();
   }
 
-  void _toggleCounter() {
+  void _toggleButton(int buttonIndex) {
     setState(() {
-      _isCounterActive = !_isCounterActive;
-
-      if (_isCounterActive) {
-        _incrementCounter();
-        Timer.periodic(const Duration(seconds: 1), (_) {
-          _incrementCounter();
-        });
+      if (_activeButtons.contains(buttonIndex)) {
+        _activeButtons.remove(buttonIndex);
+      } else {
+        _activeButtons.add(buttonIndex);
       }
     });
+    _startIncrementTimer();
+  }
+
+  int _getIncrementValue(int buttonIndex) {
+    if (buttonIndex == 0) {
+      return 1;
+    } else if (buttonIndex == 1) {
+      return 10;
+    } else if (buttonIndex == 2) {
+      return 100;
+    } else {
+      return 0;
+    }
   }
 
   @override
@@ -85,7 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _selectedIndex == 0 ? _buildHomePage() : _buildShopPage(),
+      body: _selectedIndex == 0
+          ? _buildHomePage()
+          : ShopPage(
+        activeButtons: _activeButtons,
+        toggleButton: _toggleButton,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -125,19 +145,48 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
 
-  Widget _buildShopPage() {
+class ShopPage extends StatelessWidget {
+  final Set<int> activeButtons;
+  final Function(int) toggleButton;
+
+  const ShopPage({
+    Key? key,
+    required this.activeButtons,
+    required this.toggleButton,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text('Shop Page'),
           ElevatedButton(
-            onPressed: _toggleCounter,
-            child: Text(_isCounterActive ? 'Deactivate Counter' : 'Activate Counter'),
+            onPressed: () => toggleButton(0),
+            style: _getButtonStyle(activeButtons.contains(0)),
+            child: const Text('Buy 1/sec'),
+          ),
+          ElevatedButton(
+            onPressed: () => toggleButton(1),
+            style: _getButtonStyle(activeButtons.contains(1)),
+            child: const Text('Buy 10/sec'),
+          ),
+          ElevatedButton(
+            onPressed: () => toggleButton(2),
+            style: _getButtonStyle(activeButtons.contains(2)),
+            child: const Text('Buy 100/sec'),
           ),
         ],
       ),
     );
+  }
+
+  ButtonStyle _getButtonStyle(bool isActive) {
+    return isActive
+        ? ElevatedButton.styleFrom(primary: Colors.green)
+        : ElevatedButton.styleFrom(primary: Colors.blue);
   }
 }
