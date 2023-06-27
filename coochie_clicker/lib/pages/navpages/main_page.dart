@@ -1,7 +1,9 @@
 import 'package:coochie_clicker/pages/navpages/shop_page.dart';
+import 'package:coochie_clicker/pages/navpages/home_page.dart';
+import 'package:coochie_clicker/library/globals.dart' as globals;
+
 import 'package:flutter/material.dart';
 
-import '../home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -11,15 +13,25 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int currentIndex = 0;
+
   List pages = [
     const HomePage(),
     ShopPage(),
   ];
-  int currentIndex = 0;
+
   void onTap(int index) {
     setState(() {
       currentIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (globals.timPunten > 0) {
+      globals.autoIncrement();
+    }
   }
 
   @override
