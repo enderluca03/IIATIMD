@@ -160,95 +160,55 @@ class ShopPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  Widget _buildShopPage() {
     List<Shop> shopItems = [
-      Shop(power: 'Fingers', amount: 2, effect: 'More coochies per tap', price: 69),
-      Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 420),
-      Shop(power: 'Alcohol', amount: 17, effect: 'Multiplies the changes of getting laid', price: 720),
+      Shop(power: 'Fingers',
+          amount: 2,
+          effect: 'More coochies per tap',
+          price: 69),
+      Shop(power: 'Tim',
+          amount: 1,
+          effect: 'Get More Coochies each second',
+          price: 420),
+      Shop(power: 'Alcohol',
+          amount: 17,
+          effect: 'Multiplies the changes of getting laid',
+          price: 720),
     ];
-    Widget shopTemplete(shop){
-      return Card(
-        margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-        child: Column(
-          children: <Widget>[
-            Text(
-              shop.amount,
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.grey[600]
-              )
-            ),
-            const SizedBox(height: 6.0),
-            Text(
-                shop.power,
-                style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.grey[600]
-                )
-            ),
-          ],
-        ),
-      );
-    }
 
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text('Shop Page'),
-          ElevatedButton(
-            onPressed: () => toggleButton(0),
-            style: _getButtonStyle(activeButtons.contains(0)),
-            child: const Text('Buy 1/sec'),
-          ),
-          ElevatedButton(
-            onPressed: () => toggleButton(1),
-            style: _getButtonStyle(activeButtons.contains(1)),
-            child: const Text('Buy 10/sec'),
-          ),
-          ElevatedButton(
-            onPressed: () => toggleButton(2),
-            style: _getButtonStyle(activeButtons.contains(2)),
-            child: const Text('Buy 100/sec'),
-          ),
-          Column(
-            children:
-              shopItems.map((shopItem) =>
-                  Card(
-                    margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                    color: Colors.redAccent,
-                    child: SizedBox(
-                      width: 375,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                          child: Column(
-                            children: <Widget>[
-                              Text('${shopItem.amount}X ${shopItem.power} -> ${shopItem.effect}'),
-                              OutlinedButton( style: OutlinedButton.styleFrom(
-                                side: const BorderSide(color: Colors.black, width: 1),
-                                backgroundColor: Colors.white,
-                                shape: BeveledRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                                  onPressed: (){}, child: Text('${shopItem.price} Coochies', style: const TextStyle(color: Colors.black),)),
-                            ],
+    return Column(
+        children:
+        shopItems.map((shopItem) =>
+            Card(
+              margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              color: Colors.redAccent,
+              child: SizedBox(
+                  width: 375,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                    child: Column(
+                      children: <Widget>[
+                        Text('${shopItem.amount}X ${shopItem
+                            .power} -> ${shopItem.effect}'),
+                        OutlinedButton(style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                              color: Colors.black, width: 1),
+                          backgroundColor: Colors.white,
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-
-                        )
+                        ),
+                            onPressed: () => {
+                              $_counter
+                            },
+                            child: Text('${shopItem.price} Coochies',
+                              style: const TextStyle(
+                                  color: Colors.black),)),
+                      ],
                     ),
-
-
-                    )
-              ).toList()
-          ),
-          // ElevatedButton(
-          //   onPressed: _toggleCounter,
-          //   child: Text(_isCounterActive ? 'Deactivate Counter' : 'Activate Counter'),
-          // ),
-        ],
-      ),
+                  )
+              ),
+            )
+        ).toList()
     );
   }
 
