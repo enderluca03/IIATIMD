@@ -5,19 +5,10 @@ import 'package:coochie_clicker/library/globals.dart' as globals;
 class ShopPage extends StatelessWidget {
   ShopPage({super.key});
 
-  List<Shop> shopItems = [
-    Shop(power: 'Fingers',
-        amount: 2,
-        effect: 'More coochies per tap',
-        price: 69),
-    Shop(power: 'Tim',
-        amount: 1,
-        effect: 'Get More Coochies each second',
-        price: 420),
-    Shop(power: 'Alcohol',
-        amount: 17,
-        effect: 'Multiplies the changes of getting laid',
-        price: 720),
+  static List<Shop> shopItems = [
+    Shop(power: 'Fingers', amount: 2, effect: 'More coochies per tap', price: 69),
+    Shop(power: 'Tim', amount: 1, effect: 'Get More Coochies each second', price: 420),
+    Shop(power: 'Alcohol', amount: 17, effect: 'Multiplies the chances of getting laid', price: 720),
   ];
 
   @override
@@ -67,7 +58,15 @@ class ShopPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            onPressed: (){},
+                              onPressed: () {
+                                if (shopItem.power == 'Tim' && globals.counter >= shopItem.price) {
+                                  globals.buyTim();
+                                } else if (shopItem.power == 'Fingers' && globals.counter >= shopItem.price) {
+                                  globals.buyFinger();
+                                } else if (shopItem.power == 'Alcohol' && globals.counter >= shopItem.price) {
+                                  globals.buyAlcohol();
+                                }
+                              },
                             child: Text('${shopItem.price} Coochies', style: const TextStyle(color: Colors.black),))
                         ],
                       ),
