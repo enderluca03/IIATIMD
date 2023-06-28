@@ -42,7 +42,7 @@ class ShopPage extends StatelessWidget {
             Column(
                 children: shopItems.map((shopItem) => Card(
                   margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                  color: Colors.redAccent,
+                  color: Colors.greenAccent,
                   child: SizedBox(
                     width: 375,
                     child: Padding(
