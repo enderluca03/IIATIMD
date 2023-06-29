@@ -18,8 +18,8 @@ void buyFinger() {
   ShopPage.shopItems[0].price += 1;
   ShopPage.shopItems[0].amount += 1;
   fingerPower++;
-  print(fingerPower);
-  print(ShopPage.shopItems[0].price);
+  // print(fingerPower);
+  // print(ShopPage.shopItems[0].price);
 }
 
 void buyTim() {
@@ -29,14 +29,16 @@ void buyTim() {
   timPunten++;
 
   autoIncrement();
-  print("Auto increment started");
-  print(timPunten);
-  print(ShopPage.shopItems[1].price);
+
+  // print("Auto increment started");
+  // print(timPunten);
+  // print(ShopPage.shopItems[1].price);
 }
 
 void buyAlcohol() {
   counter -= ShopPage.shopItems[2].price;
   ShopPage.shopItems[2].amount += 1;
 
-  print("Alcohol Test");
+  // print("Alcohol Test");
 }
+

@@ -6,7 +6,7 @@ class ShopPage extends StatelessWidget {
   ShopPage({super.key});
 
   static List<Shop> shopItems = [
-    Shop(power: 'Fingers', amount: 0, effect: 'More coochies per tap', price: 69),
+    Shop(power: 'Fingers', amount: 1, effect: 'More coochies per tap', price: 69),
     Shop(power: 'Tim', amount: 0, effect: 'Get More Coochies each second', price: 420),
     Shop(power: 'Alcohol', amount: 0, effect: 'Multiplies the chances of getting laid', price: 720),
   ];
