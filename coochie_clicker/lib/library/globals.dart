@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:coochie_clicker/pages/navpages/shop_page.dart' show ShopPage;
 
-double counter = 700;
+double counter = 0;
 double fingerPower = 1;
 double timPunten = 0;
 double multiplier = 1;
@@ -24,7 +24,7 @@ void buyFinger() {
 
 void buyTim() {
   counter -= ShopPage.shopItems[1].price;
-  ShopPage.shopItems[1].price = ShopPage.shopItems[1].price * 1.05;
+  ShopPage.shopItems[1].price = ShopPage.shopItems[1].price * 1.1;
   timPunten++;
 
   autoIncrement();
@@ -35,7 +35,7 @@ void buyTim() {
 
 void buyAlcohol() {
   counter -= ShopPage.shopItems[2].price;
-  ShopPage.shopItems[2].price = ShopPage.shopItems[2].price * 1.05;
+  ShopPage.shopItems[2].price = ShopPage.shopItems[2].price * 1.5;
   multiplier ++;
 
   print(multiplier);

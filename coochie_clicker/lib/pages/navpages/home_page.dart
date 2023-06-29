@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              '${globals.counter}',
+              '${globals.counter.toStringAsFixed(2)}',
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,

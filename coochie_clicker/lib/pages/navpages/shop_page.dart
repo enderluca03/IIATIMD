@@ -27,7 +27,7 @@ class ShopPage extends StatelessWidget {
                 ),
               ),
               Text(
-                'Total Coochies: ${globals.counter}',
+                'Total Coochies: ${globals.counter.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontSize: 20,
                 ),
@@ -71,7 +71,7 @@ class ShopPage extends StatelessWidget {
                               }
                             },
                             child: Text(
-                              '${shopItem.price} Coochies',
+                              '${shopItem.price.toStringAsFixed(2)} Coochies',
                               style: const TextStyle(color: Colors.black),
                             ),
                           ),
