@@ -34,7 +34,7 @@ class _ShopPage extends State<ShopPage> {
     setState(() {
       globals.counter -= shopItems[2].price;
       shopItems[2].price = shopItems[2].price * 1.5;
-      shopItems[3].amount++;
+      shopItems[2].amount++;
       globals.multiplier ++;
     });
   }
