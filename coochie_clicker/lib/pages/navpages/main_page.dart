@@ -3,6 +3,7 @@ import 'package:coochie_clicker/pages/navpages/home_page.dart';
 import 'package:coochie_clicker/library/globals.dart' as globals;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 class MainPage extends StatefulWidget {
@@ -36,6 +37,11 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return Scaffold(
 
       backgroundColor: Colors.blue,
