@@ -22,41 +22,94 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Your Total Coochies:',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.lightBlue,
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
-            Text(
-              '${globals.counter.toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              )
 
-            ),
-          SizedBox(
-            width: 150,
-            height: 150,
-            child: FloatingActionButton(
-              onPressed: incrementCounter,
-              tooltip: 'Increment',
-              backgroundColor: Colors.transparent,
-              mini: false,
-              materialTapTargetSize: MaterialTapTargetSize.padded,
-              heroTag: null,
-              elevation: 6.0,
-              child: const Image(
-                width: 1069, // Adjust the width as per your requirement
-                height: 1069, // Adjust the height as per your requirement
-                image: AssetImage('assets/images/cookie.png'),
+              child: Column(
+                children: [
+                  const Text(
+                    'Your Total Coochies:',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    globals.counter.toStringAsFixed(2),
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
+            Container(
+              margin: const EdgeInsets.all(32),
+              child: SizedBox(
+                width: 150,
+                height: 150,
+                child: FloatingActionButton(
+                  onPressed: incrementCounter,
+                  tooltip: 'Increment',
+                  backgroundColor: Colors.transparent,
+                  mini: false,
+                  materialTapTargetSize: MaterialTapTargetSize.padded,
+                  heroTag: null,
+                  elevation: 6.0,
+                  child: const Image(
+                    width: 1069, // Adjust the width as per your requirement
+                    height: 1069, // Adjust the height as per your requirement
+                    image: AssetImage('assets/images/cookie.png'),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(32, 80, 24, 24),
+              padding: const EdgeInsets.all(16),
+              alignment: Alignment.bottomLeft,
+
+              decoration: BoxDecoration(
+                color: Colors.greenAccent,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Finger power: ${globals.fingerPower.round()}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    "Coochies per second: ${globals.timPunten.round()}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    "Multiplier: ${globals.multiplier.round()}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

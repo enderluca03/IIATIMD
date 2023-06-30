@@ -8,7 +8,7 @@ double multiplier = 1;
 
 void autoIncrement() {
   Timer.periodic(const Duration(seconds: 1), (_) {
-    counter += timPunten; // Add timPunten to counter every second
+    counter += timPunten;
     print(counter);
   });
 }

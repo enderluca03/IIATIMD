@@ -52,7 +52,7 @@ class ShopPage extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                       child: Column(
                         children: <Widget>[
-                          Text('${shopItem.amount}X ${shopItem.power} -> ${shopItem.effect}'),
+                          Text('${shopItem.amount}x ${shopItem.power} -> ${shopItem.effect}'),
                           OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: Colors.black, width: 1),
