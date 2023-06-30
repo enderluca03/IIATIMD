@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:coochie_clicker/library/globals.dart' as globals;
-import 'package:shake/shake.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,20 +13,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       globals.counter = globals.counter + (globals.fingerPower * globals.multiplier);
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    ShakeDetector detector = ShakeDetector.autoStart(
-      onPhoneShake: () {
-        incrementCounter();
-        print('shake');
-      },
-      minimumShakeCount: 1,
-      shakeSlopTimeMS: 500,
-      shakeThresholdGravity: 2.7,
-    );
   }
 
   @override
