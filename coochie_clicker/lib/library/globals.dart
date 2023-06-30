@@ -9,7 +9,7 @@ double multiplier = 1;
 void autoIncrement() {
   Timer.periodic(const Duration(seconds: 1), (_) {
     counter += timPunten; // Add timPunten to counter every second
-    print(counter);
+    // print(counter);
   });
 }
 
@@ -17,13 +17,8 @@ void buyFinger() {
   counter -= ShopPage.shopItems[0].price;
   ShopPage.shopItems[0].amount += 1;
   fingerPower++;
-  // print(fingerPower);
-  // print(ShopPage.shopItems[0].price);
   ShopPage.shopItems[0].price = ShopPage.shopItems[0].price * 1.05;
   fingerPower++;
-
-  print(fingerPower);
-  print(ShopPage.shopItems[0].price);
 }
 
 void buyTim() {
@@ -33,10 +28,6 @@ void buyTim() {
   timPunten++;
 
   autoIncrement();
-
-  // print("Auto increment started");
-  // print(timPunten);
-  // print(ShopPage.shopItems[1].price);
 }
 
 void buyAlcohol() {
@@ -44,7 +35,4 @@ void buyAlcohol() {
   // print("Alcohol Test");
   ShopPage.shopItems[2].price = ShopPage.shopItems[2].price * 1.5;
   multiplier++;
-
-  print(multiplier);
-  print(ShopPage.shopItems[2].price);
 }

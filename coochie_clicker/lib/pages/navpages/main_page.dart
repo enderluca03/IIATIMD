@@ -1,6 +1,7 @@
 import 'package:coochie_clicker/pages/navpages/shop_page.dart';
 import 'package:coochie_clicker/pages/navpages/home_page.dart';
 import 'package:coochie_clicker/library/globals.dart' as globals;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:coochie_clicker/library/globals.dart' as globals;
 import 'package:shake/shake.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,9 +12,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  Future<void> data() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    print(prefs.getInt("${globals.counter}"));
+  }
+
   @override
   void initState() {
     super.initState();
+    data();
     ShakeDetector detector = ShakeDetector.autoStart(
       onPhoneShake: () {
         incrementCounter();
@@ -21,7 +29,6 @@ class _HomePageState extends State<HomePage> {
       },
       minimumShakeCount: 1,
       shakeSlopTimeMS: 500,
-      shakeCountResetTime: 3000,
       shakeThresholdGravity: 2.7,
     );
   }
