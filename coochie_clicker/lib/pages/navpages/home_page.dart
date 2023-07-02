@@ -42,9 +42,9 @@ class _HomePageState extends State<HomePage> {
           title: Column(
             children: <Widget>[
                     const Text(
-                      'Your Total Coochies:',
+                      'Your Total Coochies',
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
